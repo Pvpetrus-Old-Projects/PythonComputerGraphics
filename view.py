@@ -5,9 +5,7 @@ def init_grid(rows, cols, color):
     return [[color for _ in range(cols)] for _ in range(rows)]
 
 
-def draw(win, grid, buttons):
-    win.fill(BG_COLOR)
-    draw_grid(win, grid)
+def draw(win, buttons):
     for button in buttons:
         button.draw(win)
     pygame.display.update()
@@ -35,3 +33,32 @@ def get_row_col_from_pos(pos):
         raise IndexError
 
     return row, col
+
+
+def draw_polygon(window, color, start_pos_x, start_pos_y, middle_pos_x, middle_pos_y, end_pos_x, end_pos_y):
+    pygame.draw.polygon(window, color, ((start_pos_x * PIXEL_SIZE, start_pos_y * PIXEL_SIZE),
+                                        (middle_pos_x * PIXEL_SIZE, middle_pos_y * PIXEL_SIZE),
+                                        (end_pos_x * PIXEL_SIZE, end_pos_y * PIXEL_SIZE)), 5)
+
+
+def draw_line(window, color, start_pos_x, start_pos_y, end_pos_x, end_pos_y):
+    pygame.draw.line(window, color, (start_pos_x * PIXEL_SIZE, start_pos_y * PIXEL_SIZE),
+                     (end_pos_x * PIXEL_SIZE, end_pos_y * PIXEL_SIZE), 5)
+
+
+def draw_ellipse(window, color, start_pos_x, start_pos_y, end_pos_x, end_pos_y):
+    pos_diff_x = abs(start_pos_x - end_pos_x)
+    pos_diff_y = abs(start_pos_y - end_pos_y)
+    # pos_x = start_pos_x if start_pos_x < end_pos_y else end_pos_y
+    # pos_y = start_pos_y if start_pos_y < end_pos_y else end_pos_y
+    pygame.draw.ellipse(window, color, (start_pos_x * PIXEL_SIZE, start_pos_y * PIXEL_SIZE,
+                                        pos_diff_x * PIXEL_SIZE, pos_diff_y * PIXEL_SIZE), 5)
+
+
+def draw_rect(window, color, start_pos_x, start_pos_y, end_pos_x, end_pos_y):
+    pos_diff_x = abs(start_pos_x - end_pos_x)
+    pos_diff_y = abs(start_pos_y - end_pos_y)
+    # pos_x = start_pos_x if start_pos_x < end_pos_y else end_pos_y
+    # pos_y = start_pos_y if start_pos_y < end_pos_y else end_pos_y
+    pygame.draw.rect(window, color, (start_pos_x * PIXEL_SIZE, start_pos_y * PIXEL_SIZE,
+                                 pos_diff_x * PIXEL_SIZE, pos_diff_y * PIXEL_SIZE), 5)

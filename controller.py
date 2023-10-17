@@ -1,10 +1,5 @@
-import pygame.draw
-
 from model import *
 from view import init_grid, get_row_col_from_pos, draw
-
-WIN = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Paint +")
 
 running = True
 clock = pygame.time.Clock()
@@ -16,11 +11,10 @@ start_pos_y = None
 end_pos_x = None
 end_pos_y = None
 
-button_y = HEIGHT - TOOLBAR_HEIGHT / 2 - 25
 buttons = [
-    Button(10, button_y, 100, 50, BLACK, "LINE", WHITE),
-    Button(120, button_y, 100, 50, BLACK, "DOT", WHITE),
-    Button(230, button_y, 100, 50, BLACK, "TEXT", WHITE),
+    Button(10, BUTTON_Y, 100, 50, BLACK, "LINE", WHITE),
+    Button(120, BUTTON_Y, 100, 50, BLACK, "DOT", WHITE),
+    Button(230, BUTTON_Y, 100, 50, BLACK, "TEXT", WHITE),
 ]
 
 while running:
@@ -93,7 +87,7 @@ while running:
                         current_drawing_mode = "LINE"
                     if button.text == "TEXT":
                         current_drawing_mode = "TEXT"
-        draw(WIN, grid, buttons)
+        draw(WIN, buttons)
 
 rect = pygame.Rect(0, 0, 600, 600)
 sub = WIN.subsurface(rect)

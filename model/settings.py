@@ -23,8 +23,11 @@ BG_COLOR = WHITE
 
 DRAW_GRID_LINES = True
 
+BUTTON_Y = HEIGHT - TOOLBAR_HEIGHT / 2 - 25
+
+WIN = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Paint +")
+
 
 def get_font(size):
     return pygame.font.SysFont("comicsans", size)
-
-
